@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-<iframe src="http://fuzhouzz.applinzi.com"></iframe>
 <script type="text/javascript">
     $(document).ready(function(){
-
         var iframeHeight = function () {
             var _height = $(window).height() - 34;
             $('#content').height(_height);
@@ -18,9 +16,10 @@
         $(function () {
             iframeHeight();
         });
-
     });
-
 </script>
+<div id="container" style="overflow:hidden;">
+    <iframe border="0" id="content" src="http://fuzhouzz.applinzi.com" frameborder="0" height="100%" width="100%"></iframe>
+</div>
   </body>
 </html>
