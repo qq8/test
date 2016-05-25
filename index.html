@@ -1,25 +1,49 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <title>Test by qq8</title>
+    <title>Welcome</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
-<script type="text/javascript">
-    $(document).ready(function(){
-        var iframeHeight = function () {
-            var _height = $(window).height() - 34;
-            $('#content').height(_height);
-        }
-        window.onresize = iframeHeight;
-        $(function () {
-            iframeHeight();
-        });
-    });
-</script>
-<div id="container" style="overflow:hidden;">
-    <iframe border="0" id="content" src="http://fuzhouzz.applinzi.com" frameborder="0" height="100%" width="100%"></iframe>
-</div>
-  </body>
+</head>
+<body>
+    <script type="text/javascript">
+        "use strict";     
+            var ready = (function () {
+                var funcs = [],ready = false;
+                function handler(e) {
+                    if (ready) return;
+                    if (e.type === 'onreadystatechange' && document.readyState !== 'complete') {
+                        return;
+                    }
+                    for (var i = 0; i < funcs.length; i++) {
+                        funcs[i].call(document);
+                    }
+                    ready = true;
+                    funcs = null;
+                }
+                if (document.addEventListener) {
+                    document.addEventListener('DOMContentLoaded', handler, false);
+                    document.addEventListener('readystatechange', handler, false);            //IE9+
+                    window.addEventListener('load', handler, false);
+                } else if (document.attachEvent) {
+                    document.attachEvent('onreadystatechange', handler);
+                    window.attachEvent('onload', handler);
+                }
+                return function whenReady(fn) {
+                    if (ready) { fn.call(document); }
+                    else { funcs.push(fn); }
+                }
+            })();
+            ready(function () {
+                var iframeHeight = function () {
+                    document.getElementById('content').style.height=window.document.documentElement.clientHeight-19+'px';
+                }
+                window.onresize = iframeHeight;
+                ready(iframeHeight);
+            });
+    </script>
+    <div id="container" style="overflow:hidden;">
+        <iframe border="0" id="content" src="http://fuzhouzz.applinzi.com" frameborder="0" height="100%" width="100%"></iframe>
+    </div>
+</body>
 </html>
