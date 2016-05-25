@@ -7,5 +7,20 @@
   </head>
   <body>
 <iframe src="http://fuzhouzz.applinzi.com"></iframe>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        var iframeHeight = function () {
+            var _height = $(window).height() - 34;
+            $('#content').height(_height);
+        }
+        window.onresize = iframeHeight;
+        $(function () {
+            iframeHeight();
+        });
+
+    });
+
+</script>
   </body>
 </html>
